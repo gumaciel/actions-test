@@ -17,9 +17,9 @@ jobs:
         run: |
           #cat tag_html.md
           #regex=(?<=play-services-ads:)(\d+[.]\d+[.]\d+)
-          cat correct_content.gdap | grep (?<=play-services-ads:)(\d+[.]\d+[.]\d+)
           
-          perl -pi -e 's/(?<=<img.id="androidVersion".src="https:\/\/img.shields.io\/badge\/GAD%20SDK%20Android-v)(.*)(?=-informational"\/>)/000/g' tag_html.md
+          GAD_SDK_VERSION=$(cat correct_content.gdap | perl -ne 'print $1 if /(?<=play-services-ads:)(\d+[.]\d+[.]\d+)/s')
+          perl -pi -e "s/(?<=<img.id=\"androidVersion\".src=\"https:\/\/img.shields.io\/badge\/GAD%20SDK%20Android-v)(.*)(?=-informational\"\/>)/$GAD_SDK_VERSION/g" tag_html.md
           cat tag_html.md
         working-directory: change_content
       
