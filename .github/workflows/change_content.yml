@@ -1,7 +1,10 @@
 name: Change content in file into another
 
 on:
-  workflow_dispatch:
+  push:
+    paths: 
+      - 'change_content/*'
+      - '.github/workflows/change_content.yml'
 
 jobs:
   build:
@@ -16,7 +19,8 @@ jobs:
           sed -i -e 's/godot-admob-android/godot-admob-ios/g' tag_html.md
           cat tag_html.md
         working-directory: change_content
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v4.15.0
-        with:
-          commit_message: Automated Change
+      
+      #- name: Git Auto Commit
+      #  uses: stefanzweifel/git-auto-commit-action@v4.15.0
+      #  with:
+      #    commit_message: Automated Change
