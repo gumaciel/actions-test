@@ -16,7 +16,7 @@ jobs:
       - name: Run a one-line script
         run: |
           cat tag_html.md
-          perl -pe 's/(?<=<img.id="androidVersion".src="https:\/\/img.shields.io\/badge\/GAD%20SDK%20Android-v)(.*)(?=-informational"\/>)/000/g' tag_html.md
+          perl -pi -e 's/(?<=<img.id="androidVersion".src="https:\/\/img.shields.io\/badge\/GAD%20SDK%20Android-v)(.*)(?=-informational"\/>)/000/g' tag_html.md
           cat tag_html.md
         working-directory: change_content
       
