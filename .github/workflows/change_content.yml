@@ -19,7 +19,7 @@ jobs:
           #regex=(?<=play-services-ads:)(\d+[.]\d+[.]\d+)
           
           GAD_SDK_VERSION=$(cat correct_content.gdap | perl -ne 'print $1 if /(?<=play-services-ads:)(\d+[.]\d+[.]\d+)/s')
-          perl -pi -e "s/(?<=GAD SDK Android-v)(.*)(?=-informational)/$GAD_SDK_VERSION/g" tag_html.md
+          perl -pi -e "s/(?<=GAD SDK Android-v)(\d+[.]\d+[.]\d+)/$GAD_SDK_VERSION/g" tag_html.md
           cat tag_html.md
         working-directory: change_content
       
