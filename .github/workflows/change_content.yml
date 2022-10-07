@@ -17,7 +17,7 @@ jobs:
       - name: Run a one-line script
         run: |
           GDAP_FILE=change_content/correct_content.gdap
-          MD_FILE=tag_html.md
+          MD_FILE=change_content/tag_html.md
           
           GAD_SDK_VERSION=$(cat $GDAP_FILE | perl -ne 'print $1 if /(?<=play-services-ads:)(\d+[.]\d+[.]\d+)/s')
           perl -pi -e "s/(?<=GAD SDK Android-v)(\d+[.]\d+[.]\d+)/$GAD_SDK_VERSION/g" $MD_FILE
