@@ -3,7 +3,8 @@ name: Change content in file into another
 on:
   push:
     paths: 
-      - 'change_content/*'
+      - 'change_content/correct_content.gdap'
+      - 'change_content/tag_html.md'
       - '.github/workflows/change_content.yml'
 
 jobs:
@@ -15,13 +16,12 @@ jobs:
 
       - name: Run a one-line script
         run: |
-          #cat tag_html.md
-          #regex=(?<=play-services-ads:)(\d+[.]\d+[.]\d+)
+          GDAP_FILE=change_content/correct_content.gdap
+          MD_FILE=tag_html.md
           
-          GAD_SDK_VERSION=$(cat correct_content.gdap | perl -ne 'print $1 if /(?<=play-services-ads:)(\d+[.]\d+[.]\d+)/s')
-          perl -pi -e "s/(?<=GAD SDK Android-v)(\d+[.]\d+[.]\d+)/$GAD_SDK_VERSION/g" tag_html.md
-          cat tag_html.md
-        working-directory: change_content
+          GAD_SDK_VERSION=$(cat $GDAP_FILE | perl -ne 'print $1 if /(?<=play-services-ads:)(\d+[.]\d+[.]\d+)/s')
+          perl -pi -e "s/(?<=GAD SDK Android-v)(\d+[.]\d+[.]\d+)/$GAD_SDK_VERSION/g" $MD_FILE
+          cat $MD_FILE
       
       #- name: Git Auto Commit
       #  uses: stefanzweifel/git-auto-commit-action@v4.15.0
