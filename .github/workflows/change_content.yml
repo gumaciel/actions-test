@@ -21,7 +21,7 @@ jobs:
           
           REGEX_FIND_GAD_SDK_VERSION_GDAP_FILE='(?<=play-services-ads:)(\d+[.]\d+[.]\d+)'
           
-          GAD_SDK_VERSION=$(cat $GDAP_FILE | perl -ne 'print $1 if /(?<=play-services-ads:)(\d+[.]\d+[.]\d+)/s')
+          GAD_SDK_VERSION=$(cat $GDAP_FILE | perl -ne 'print $1 if /'$REGEX_FIND_GAD_SDK_VERSION_GDAP_FILE'/s')
           perl -pi -e "s/(?<=GAD SDK Android-v)(\d+[.]\d+[.]\d+)/$GAD_SDK_VERSION/g" $MD_FILE
           cat $MD_FILE
       
